@@ -1,14 +1,23 @@
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-const dotenv = require('dotenv');
-dotenv.config();
+//const dotenv = require('dotenv');
+//const AWS = require("aws-sdk");
+//dotenv.config();
+
+//const credentials = new aws.SharedIniFileCredentials({profile: 'ananya'});
+//aws.config.credentials = credentials;
+
+console.log(process.env.AWS_ACCESS_KEY_ID);
+console.log(process.env.AWS_SECRET_ACCESS_KEY);
 
 aws.config.update({
-  secretAccessKey: process.env.SECRET_ACCESS_KEY,
-  accessKeyId: process.env.ACCESS_KEY_ID,
-  region: 'us-east-1'
+  region: 'us-east-1',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
+
+console.log(aws.config.credentials)
 
 const s3 = new aws.S3();
 
@@ -27,7 +36,6 @@ const upload = multer({
     s3,
     bucket: 'vasi-aws-training',
     key: function(req, file, cb) {
-      /*I'm using Date.now() to make sure my file has a unique name*/
       req.file = Date.now() + file.originalname;
       cb(null, Date.now() + file.originalname);
     }
