@@ -16,6 +16,6 @@ app.post('/api/v1/upload', upload.array('image', 1), (req, res) => {
   res.send({ image: req.file });
 });
 
-app.listen(3000, () => {
+app.listen(80, () => {
   console.log('Server listening on port 3000!');
 });
