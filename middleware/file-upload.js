@@ -1,15 +1,15 @@
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-//const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 //const AWS = require("aws-sdk");
 //dotenv.config();
 
 //const credentials = new aws.SharedIniFileCredentials({profile: 'ananya'});
 //aws.config.credentials = credentials;
 
-console.log(process.env.AWS_ACCESS_KEY_ID);
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
+// console.log(process.env.AWS_ACCESS_KEY_ID);
+// console.log(process.env.AWS_SECRET_ACCESS_KEY);
 
 aws.config.update({
   region: 'us-east-1',
@@ -17,7 +17,7 @@ aws.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
-console.log(aws.config.credentials)
+// console.log(aws.config.credentials)
 
 const s3 = new aws.S3();
 
